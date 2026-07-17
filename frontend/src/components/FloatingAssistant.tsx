@@ -12,7 +12,7 @@ const FloatingAssistant: React.FC = () => {
   const handleSend = () => {
     if (!input.trim()) return
 
-    const newMsgs = [...messages, { role: 'user', text: input }]
+    const newMsgs = [...messages, { role: 'user' as const, text: input }]
     setMessages(newMsgs)
     setInput('')
 

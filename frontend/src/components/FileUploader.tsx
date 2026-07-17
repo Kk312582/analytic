@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
-import { UploadCloud, File, CheckCircle } from 'lucide-react'
-import axios from 'axios'
+import { UploadCloud, CheckCircle } from 'lucide-react'
+
 import { useUIStore } from '../store/uiStore'
 
 const FileUploader: React.FC = () => {
