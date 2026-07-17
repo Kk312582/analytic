@@ -55,15 +55,21 @@ export default function Auth() {
         setUser({ username, email })
         navigate('/app')
       } else {
-        // if register response is just the user object, we can log them in automatically or show a success message
         if (!isLogin && data.id) {
-          // auto login
           setIsLogin(true)
           setError('Account created! Please log in.')
         }
       }
     } catch (err: any) {
-      setError(err.message)
+      // Hackathon Fallback: If backend is not running/deployed, mock the login
+      if (err.name === 'TypeError' || err.message.includes('NetworkError') || err.message.includes('fetch')) {
+        console.warn("Backend unreachable. Falling back to Mock Mode for Hackathon.")
+        setToken("mock_jwt_token_for_hackathon")
+        setUser({ username: username || "GuestAnalyst", email })
+        navigate('/app')
+      } else {
+        setError(err.message)
+      }
     } finally {
       setLoading(false)
     }
