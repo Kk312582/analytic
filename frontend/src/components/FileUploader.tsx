@@ -84,6 +84,8 @@ const FileUploader: React.FC = () => {
   return (
     <div className="w-full max-w-2xl mx-auto mt-10">
       <div 
+        role="region"
+        aria-label="File Upload Dropzone"
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
@@ -109,9 +111,25 @@ const FileUploader: React.FC = () => {
           </div>
 
           {!file && (
-            <label className="mt-4 px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full cursor-pointer transition-colors border border-white/10">
+            <label 
+              className="mt-4 px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full cursor-pointer transition-colors border border-white/10"
+              aria-label="Browse Files"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  document.getElementById('file-upload-input')?.click();
+                }
+              }}
+            >
               Browse Files
-              <input type="file" className="hidden" accept=".csv,.xlsx" onChange={(e) => e.target.files && setFile(e.target.files[0])} />
+              <input 
+                id="file-upload-input"
+                type="file" 
+                className="hidden" 
+                accept=".csv,.xlsx" 
+                onChange={(e) => e.target.files && setFile(e.target.files[0])} 
+                aria-label="Hidden file input"
+              />
             </label>
           )}
 
@@ -119,6 +137,8 @@ const FileUploader: React.FC = () => {
             <button 
               onClick={handleUpload}
               disabled={uploading}
+              aria-label={uploading ? 'Analyzing dataset' : 'Generate AI Dashboard'}
+              aria-busy={uploading}
               className="mt-4 px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-full transition-colors flex items-center gap-2 disabled:opacity-50"
             >
               {uploading ? 'AI Analyzing...' : 'Generate AI Dashboard'}

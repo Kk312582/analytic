@@ -13,6 +13,10 @@ Designed with a premium glassmorphic UI, ForecastAI learns your preferences and 
 - **Floating AI Forecast Coach**: A chat interface that not only answers questions but prescribes actionable recommendations based on the forecast. It can even control the UI (e.g., "Switch to dark mode", "Change to grid layout").
 - **Guest Mode & Auth**: Fully secure JWT-based authentication system with a frictionless 2-session Guest limit for immediate onboarding.
 
+## 🎯 Problem Statement Alignment
+This project was built to directly solve the hackathon challenge of creating an **Intelligent Personalized Forecast Dashboard**.
+Please see the full [PROBLEM_STATEMENT.md](./PROBLEM_STATEMENT.md) for a detailed breakdown of how our AI orchestration, predictive modeling, RAG memory, and dynamic UI hit every metric of the core challenge.
+
 ## 🛠 Tech Stack
 
 ### Backend

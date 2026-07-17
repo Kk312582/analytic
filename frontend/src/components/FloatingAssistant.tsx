@@ -44,6 +44,7 @@ const FloatingAssistant: React.FC = () => {
       {/* Floating Button */}
       <button 
         onClick={toggleAssistant}
+        aria-label={isAssistantOpen ? "Close AI Assistant" : "Open AI Assistant"}
         className="fixed bottom-6 right-6 p-4 bg-blue-600 hover:bg-blue-500 text-white rounded-full shadow-2xl transition-transform hover:scale-110 z-50 flex items-center justify-center"
       >
         {isAssistantOpen ? <X size={24} /> : <MessageSquare size={24} />}
@@ -51,7 +52,11 @@ const FloatingAssistant: React.FC = () => {
 
       {/* Chat Window */}
       {isAssistantOpen && (
-        <div className="fixed bottom-24 right-6 w-80 h-[500px] bg-black/60 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden transform transition-all duration-300">
+        <div 
+          role="dialog"
+          aria-label="AI Forecast Coach Chat Window"
+          className="fixed bottom-24 right-6 w-80 h-[500px] bg-black/60 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden transform transition-all duration-300"
+        >
           <div className="p-4 border-b border-white/10 bg-white/5 flex items-center justify-between">
             <h3 className="text-white font-semibold flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
@@ -59,7 +64,11 @@ const FloatingAssistant: React.FC = () => {
             </h3>
           </div>
           
-          <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3">
+          <div 
+            className="flex-1 p-4 overflow-y-auto flex flex-col gap-3"
+            aria-live="polite"
+            role="log"
+          >
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm ${
@@ -80,10 +89,12 @@ const FloatingAssistant: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
               placeholder="Ask me anything..." 
+              aria-label="Type your message to AI Coach"
               className="flex-1 bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
             />
             <button 
               onClick={handleSend}
+              aria-label="Send message"
               className="p-2 bg-blue-600 hover:bg-blue-500 rounded-xl text-white transition-colors"
             >
               <Send size={18} />
