@@ -142,6 +142,19 @@ export default function Auth() {
           </button>
         </form>
 
+        <div className="mt-4">
+          <button 
+            onClick={() => {
+              setToken("guest_mock_token")
+              setUser({ username: "GuestAnalyst", email: "guest@example.com" })
+              navigate('/app')
+            }}
+            className="w-full bg-white/5 hover:bg-white/10 text-white/80 font-medium py-3 rounded-lg border border-white/10 transition-all flex justify-center items-center"
+          >
+            Continue as Guest
+          </button>
+        </div>
+
         <div className="mt-6 text-center text-sm text-white/50">
           {isLogin ? "Don't have an account? " : "Already have an account? "}
           <button onClick={() => { setIsLogin(!isLogin); setError(''); }} className="text-blue-400 hover:text-blue-300 font-medium">
