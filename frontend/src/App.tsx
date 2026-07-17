@@ -17,7 +17,7 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 h-screen flex flex-col">
+      <main className="relative z-10 h-screen flex flex-col">
         
         {/* Navbar */}
         <header className="px-8 py-4 bg-white/5 backdrop-blur-xl border-b border-white/10 flex justify-between items-center">
@@ -48,7 +48,7 @@ function App() {
             <DynamicDashboard />
           )}
         </main>
-      </div>
+      </main>
 
       <FloatingAssistant />
     </div>
